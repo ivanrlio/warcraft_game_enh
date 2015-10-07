@@ -2,18 +2,20 @@
 
 class Footman < Unit
 
-  attr_accessor :health_points, :attack_power , :damage
+  attr_accessor :health_points, :attack_points
 
-  def initialize
+  def initialize(hp = nil, ap = nil)
+    super
     @health_points = 60
-    @attack_power = 10
+    @attack_points = 10
   end
 
-  def attack!(enemy)  
-    enemy.damage(@attack_power)
+  def attack!(itself, enemy)  
+    super
   end
   
   def damage(ap)
-    @health_points -= ap
+    super
   end
+
 end

@@ -7,17 +7,13 @@ class SiegeEngine < Unit
     @attack_points = 50
   end
 
-  def attack!(itself, enemy)
-    super
+  def attack!(enemy)
+    return false if is_dead? || enemy.is_dead?
+    if enemy.is_a? (Barracks) 
+      enemy.damage(2 * attack_points)
+    elsif enemy.is_a? (SiegeEngine)
+      enemy.damage(attack_points)
+    end 
   end
-
-  def damage(ap)
-    super
-  end
-
-  def is_siege?
-    true
-  end
-
 
 end

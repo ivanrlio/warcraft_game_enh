@@ -3,23 +3,17 @@ class Unit
 
   attr_accessor :health_points, :attack_points
 
-  def initialize(hp = nil, ap = nil)
-    @health_points = 50
-    @attack_points = 10
+  def initialize(hp, ap)
+    @health_points = hp
+    @attack_points = ap
   end
 
-  def attack!(itself, enemy)
-    if itself.is_dead? || enemy.is_dead?
+
+  def attack!(enemy)
+    if is_dead? || enemy.is_dead?
       return false
-    else
-      if enemy.is_structure? 
-        enemy.damage(2*itself.attack_points)
-      elsif enemy.is_structure? == false && enemy.is_siege? == false
-        enemy.damage(0)
-      else
-        enemy.damage(itself.attack_points)
-      end
     end
+    enemy.damage(@attack_points)
   end
 
   def damage(ap)
@@ -27,19 +21,6 @@ class Unit
   end
 
   def is_dead?
-    if @health_points >= 1
-      return false
-    else
-      return true
-    end
+    @health_points <= 1
   end
-
-  def is_structure?
-    false
-  end
-
-  def is_siege?
-    false
-  end
-
 end

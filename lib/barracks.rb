@@ -47,24 +47,12 @@ class Barracks
     end
   end
 
-  def is_structure?
-    true
-  end
-
-  def is_siege?
-    false
-  end
-
   def is_dead?
-    if @health_points >= 1
-      return false
-    else
-      return true
-    end
+    @health_points <= 1
   end
 
   def damage(ap)
-    @health_points -= (ap/2).ceil
+    @health_points -= ap
   end
 
 end
